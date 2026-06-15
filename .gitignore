@@ -7,5 +7,5 @@ data/*.db
 screenshots/
 .vscode/
 .DS_Store
-knowledge_base/mitre/enterprise-attack.jsonfrontend/tsconfig.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
 knowledge_base/mitre/*.json
