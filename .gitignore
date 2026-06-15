@@ -8,3 +8,4 @@ screenshots/
 .vscode/
 .DS_Store
 knowledge_base/mitre/enterprise-attack.jsonfrontend/tsconfig.tsbuildinfo
+knowledge_base/mitre/*.json
