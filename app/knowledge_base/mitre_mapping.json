@@ -1,0 +1,116 @@
+{
+  "4625": {
+    "technique_id": "T1110",
+    "technique_name": "Brute Force",
+    "tactic": "Credential Access",
+    "description": "Failed logon events may indicate password guessing or brute-force attempts.",
+    "recommended_queries": [
+      "index=main EventCode=4625 | stats count by Account_Name, src_ip",
+      "index=main EventCode=4625 | timechart count"
+    ],
+    "defensive_actions": [
+      "Check failed login source IPs.",
+      "Review account lockout events.",
+      "Confirm MFA status.",
+      "Block suspicious source IP if repeated."
+    ]
+  },
+  "4798": {
+    "technique_id": "T1087",
+    "technique_name": "Account Discovery",
+    "tactic": "Discovery",
+    "description": "Local group membership enumeration may indicate account or privilege discovery.",
+    "recommended_queries": [
+      "index=main EventCode=4798 | stats count by Account_Name, ComputerName",
+      "index=main EventCode=4798 OR EventCode=4799 OR EventCode=4688"
+    ],
+    "defensive_actions": [
+      "Check if enumeration is repeated.",
+      "Review process name and parent process.",
+      "Correlate with logon events 4624 and 4625.",
+      "Check for unusual user context."
+    ]
+  },
+  "4688": {
+    "technique_id": "T1059",
+    "technique_name": "Command and Scripting Interpreter",
+    "tactic": "Execution",
+    "description": "Process creation can indicate script or command execution.",
+    "recommended_queries": [
+      "index=main EventCode=4688 | stats count by New_Process_Name, Creator_Process_Name",
+      "index=main EventCode=4688 powershell OR cmd OR wscript OR cscript"
+    ],
+    "defensive_actions": [
+      "Review command line arguments.",
+      "Check parent-child process relationship.",
+      "Look for encoded PowerShell.",
+      "Correlate with user logon activity."
+    ]
+  },
+  "4672": {
+    "technique_id": "T1078",
+    "technique_name": "Valid Accounts",
+    "tactic": "Defense Evasion / Persistence / Privilege Escalation",
+    "description": "Special privileges assigned to new logon may indicate privileged account use.",
+    "recommended_queries": [
+      "index=main EventCode=4672 | stats count by Account_Name, ComputerName",
+      "index=main EventCode=4672 Account_Name!=*$"
+    ],
+    "defensive_actions": [
+      "Validate whether account should have admin privileges.",
+      "Check source workstation.",
+      "Review related 4624 logon event.",
+      "Confirm change ticket or admin activity."
+    ]
+  },
+  "7045": {
+    "technique_id": "T1543.003",
+    "technique_name": "Windows Service",
+    "tactic": "Persistence / Privilege Escalation",
+    "description": "New service installation may indicate persistence.",
+    "recommended_queries": [
+      "index=main EventCode=7045 | table _time host Service_Name Service_File_Name Account_Name",
+      "index=main EventCode=7045 Service_File_Name=*Temp* OR Service_File_Name=*Users*"
+    ],
+    "defensive_actions": [
+      "Validate service owner.",
+      "Check binary path.",
+      "Confirm approved software deployment.",
+      "Investigate suspicious service names."
+    ]
+  },
+  "1102": {
+    "technique_id": "T1070.001",
+    "technique_name": "Clear Windows Event Logs",
+    "tactic": "Defense Evasion",
+    "description": "Security log cleared may indicate attempt to hide activity.",
+    "recommended_queries": [
+      "index=main EventCode=1102 | table _time host Account_Name",
+      "index=main EventCode=1102 OR EventCode=104"
+    ],
+    "defensive_actions": [
+      "Escalate immediately.",
+      "Identify account that cleared logs.",
+      "Check preceding privileged logons.",
+      "Preserve endpoint evidence."
+    ]
+  },
+  "5857": {
+  "technique_id": "T1047",
+  "technique_name": "Windows Management Instrumentation",
+  "tactic": "Execution",
+  "severity": "Low",
+  "description": "Windows WMI activity was observed. Review process/user context to determine if it is expected administration or suspicious WMI usage.",
+  "recommended_queries": [
+    "index=* EventCode=5857 sourcetype=\"WinEventLog:WMI\"",
+    "index=* source=\"WinEventLog:Microsoft-Windows-WMI-Activity/Operational\" EventCode=5857 | stats count by host, ComputerName",
+    "index=* (EventCode=5857 OR EventCode=5861) | table _time host ComputerName User ProcessId"
+  ],
+  "defensive_actions": [
+    "Validate whether WMI activity is expected.",
+    "Review host, user, and process context.",
+    "Correlate with process creation events such as EventCode 4688.",
+    "Check for remote WMI execution from unusual hosts."
+  ]
+ }
+}

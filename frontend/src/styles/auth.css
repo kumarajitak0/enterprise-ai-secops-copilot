@@ -1,0 +1,124 @@
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(37, 99, 235, 0.32), transparent 34%),
+    radial-gradient(circle at 85% 10%, rgba(14, 165, 233, 0.2), transparent 30%),
+    linear-gradient(135deg, #06111f 0%, #081827 45%, #050b14 100%);
+}
+
+.auth-card {
+  width: min(460px, calc(100vw - 48px));
+  padding: 30px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.13), transparent 36%),
+    linear-gradient(145deg, rgba(16, 36, 58, 0.94), rgba(11, 22, 40, 0.96));
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.auth-logo {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  border-radius: 20px;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.22);
+  border: 1px solid rgba(96, 165, 250, 0.34);
+}
+
+.auth-brand h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.auth-brand p {
+  margin: 8px 0 0;
+  color: #94a3b8;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #e5e7eb;
+  font-weight: 850;
+}
+
+.auth-form input {
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.75);
+  color: #f8fafc;
+  padding: 0 14px;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
+.auth-form button {
+  height: 48px;
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-weight: 950;
+}
+
+.auth-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-error,
+.auth-success {
+  border-radius: 13px;
+  padding: 11px 12px;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.auth-error {
+  background: rgba(127, 29, 29, 0.32);
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.auth-success {
+  background: rgba(22, 101, 52, 0.32);
+  color: #bbf7d0;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.auth-switch {
+  text-align: center;
+  margin: 20px 0 0;
+  color: #94a3b8;
+}
+
+.auth-switch a {
+  color: #93c5fd;
+  font-weight: 900;
+}

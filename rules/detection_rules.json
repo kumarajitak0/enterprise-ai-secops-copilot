@@ -1,0 +1,52 @@
+{
+  "rules": [
+    {
+      "rule_id": "WIN-SEC-4625-BRUTE-FORCE",
+      "name": "Windows Failed Logon",
+      "event_id": "4625",
+      "severity": "Medium",
+      "alert_type": "Failed Login / Possible Brute Force",
+      "mitre_id": "T1110",
+      "mitre_name": "Brute Force",
+      "tactic": "Credential Access",
+      "evidence_fields": ["event_id", "host", "user"],
+      "recommended_action": "Review failed logon source, affected account, and check if a successful login followed."
+    },
+    {
+      "rule_id": "WIN-SEC-4798-ACCOUNT-DISCOVERY",
+      "name": "Local Group Membership Enumerated",
+      "event_id": "4798",
+      "severity": "Low",
+      "alert_type": "Account Discovery",
+      "mitre_id": "T1087",
+      "mitre_name": "Account Discovery",
+      "tactic": "Discovery",
+      "evidence_fields": ["event_id", "host", "user"],
+      "recommended_action": "Validate whether enumeration was expected. Correlate with 4624, 4625, 4672, and 4688 events."
+    },
+    {
+      "rule_id": "WIN-SEC-4688-COMMAND-EXECUTION",
+      "name": "Process Creation",
+      "event_id": "4688",
+      "severity": "Medium",
+      "alert_type": "Command or Process Execution",
+      "mitre_id": "T1059",
+      "mitre_name": "Command and Scripting Interpreter",
+      "tactic": "Execution",
+      "evidence_fields": ["event_id", "host", "user"],
+      "recommended_action": "Review process command line, parent process, user context, and suspicious script execution."
+    },
+    {
+      "rule_id": "WIN-SEC-1102-LOG-CLEARED",
+      "name": "Windows Security Log Cleared",
+      "event_id": "1102",
+      "severity": "High",
+      "alert_type": "Log Tampering",
+      "mitre_id": "T1070.001",
+      "mitre_name": "Clear Windows Event Logs",
+      "tactic": "Defense Evasion",
+      "evidence_fields": ["event_id", "host", "user"],
+      "recommended_action": "Escalate immediately. Identify account that cleared logs and preserve endpoint evidence."
+    }
+  ]
+}

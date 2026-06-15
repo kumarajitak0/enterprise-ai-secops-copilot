@@ -1,0 +1,1166 @@
+.dashboard-page {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.dashboard-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin: 22px 0 18px;
+}
+
+.dashboard-title-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dashboard-title-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  color: #60a5fa;
+}
+
+.dashboard-title-row h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.dashboard-title-row p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+}
+
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.date-pill,
+.refresh-btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: rgba(15, 23, 42, 0.72);
+  color: var(--text-soft);
+  padding: 0 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.refresh-btn {
+  color: var(--text-main);
+}
+
+.refresh-btn:hover {
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.dashboard-error,
+.dashboard-loading {
+  margin-bottom: 14px;
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(127, 29, 29, 0.24);
+  color: #fecaca;
+  font-weight: 800;
+}
+
+.dashboard-loading {
+  border-color: rgba(96, 165, 250, 0.28);
+  background: rgba(37, 99, 235, 0.16);
+  color: #bfdbfe;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat-card,
+.dashboard-panel,
+.usecase-section {
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 36%),
+    linear-gradient(145deg, rgba(16, 36, 58, 0.9), rgba(11, 22, 40, 0.92));
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-card {
+  min-height: 134px;
+  padding: 18px;
+}
+
+.stat-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+}
+
+.stat-icon.blue {
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.24);
+}
+
+.stat-icon.red {
+  color: #f87171;
+  background: rgba(127, 29, 29, 0.48);
+}
+
+.stat-icon.amber {
+  color: #fbbf24;
+  background: rgba(120, 53, 15, 0.52);
+}
+
+.stat-icon.green {
+  color: #4ade80;
+  background: rgba(22, 101, 52, 0.45);
+}
+
+.stat-title {
+  color: #e5e7eb;
+  font-weight: 850;
+}
+
+.stat-value {
+  margin-top: 2px;
+  font-size: 2.05rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.stat-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  color: var(--text-soft);
+  font-size: 0.86rem;
+}
+
+.mini-trend {
+  width: 120px;
+  height: 34px;
+  color: #60a5fa;
+  flex: 0 0 auto;
+}
+
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.68fr) minmax(320px, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dashboard-panel {
+  padding: 18px;
+}
+
+.panel-heading {
+  margin-bottom: 14px;
+}
+
+.panel-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 920;
+}
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.small-action-btn {
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  background: rgba(37, 99, 235, 0.16);
+  color: #bfdbfe;
+  border-radius: 12px;
+  padding: 8px 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.small-action-btn:hover {
+  background: rgba(37, 99, 235, 0.28);
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.queue-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.queue-table th {
+  text-align: left;
+  padding: 13px;
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.56);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  font-weight: 850;
+  font-size: 0.86rem;
+}
+
+.queue-table td {
+  padding: 13px;
+  color: #e5e7eb;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  font-size: 0.9rem;
+}
+
+.empty-row {
+  color: var(--text-muted) !important;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.badge.red {
+  background: rgba(127, 29, 29, 0.55);
+  color: #fecaca;
+}
+
+.badge.amber {
+  background: rgba(120, 53, 15, 0.58);
+  color: #fde68a;
+}
+
+.badge.purple {
+  background: rgba(88, 28, 135, 0.58);
+  color: #ddd6fe;
+}
+
+.badge.green {
+  background: rgba(22, 101, 52, 0.5);
+  color: #bbf7d0;
+}
+
+.badge.blue {
+  background: rgba(30, 64, 175, 0.5);
+  color: #bfdbfe;
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.platform-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.platform-status-row span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #e5e7eb;
+  font-weight: 760;
+}
+
+.platform-status-row b {
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.status-ready {
+  color: #4ade80;
+}
+
+.status-active {
+  color: #60a5fa;
+}
+
+.status-planned {
+  color: #facc15;
+}
+
+.status-error {
+  color: #f87171;
+}
+
+.usecase-section {
+  padding: 18px;
+}
+
+.usecase-grid-react {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.usecase-card-react {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.usecase-card-react.blue {
+  border-left: 4px solid #3b82f6;
+}
+
+.usecase-card-react.purple {
+  border-left: 4px solid #8b5cf6;
+}
+
+.usecase-card-react.green {
+  border-left: 4px solid #22c55e;
+}
+
+.usecase-icon-react {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  font-size: 1.25rem;
+}
+
+.usecase-icon-react.blue {
+  background: rgba(37, 99, 235, 0.22);
+}
+
+.usecase-icon-react.purple {
+  background: rgba(88, 28, 135, 0.38);
+}
+
+.usecase-icon-react.green {
+  background: rgba(22, 101, 52, 0.42);
+}
+
+.usecase-card-react h3 {
+  margin: 14px 0 8px;
+  font-size: 1.05rem;
+}
+
+.usecase-card-react p {
+  flex: 1;
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+.usecase-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.usecase-meta-row b {
+  color: #93c5fd;
+  font-size: 1.2rem;
+}
+
+.workspace-button {
+  margin-top: 14px;
+  min-height: 42px;
+  border-radius: 13px;
+  border: 1px solid transparent;
+  font-weight: 900;
+  color: #f8fafc;
+}
+
+.workspace-button.blue {
+  background: rgba(37, 99, 235, 0.78);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.workspace-button.purple {
+  background: rgba(124, 58, 237, 0.78);
+  border-color: rgba(167, 139, 250, 0.34);
+}
+
+.workspace-button.green {
+  background: rgba(22, 163, 74, 0.78);
+  border-color: rgba(74, 222, 128, 0.34);
+}
+
+.workspace-button:hover {
+  filter: brightness(1.13);
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 18px 0 4px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+@media (max-width: 1180px) {
+  .stat-grid,
+  .dashboard-main-grid,
+  .usecase-grid-react {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 720px) {
+  .date-pill,
+  .refresh-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-footer {
+    flex-direction: column;
+  }
+}
+
+/* =============================================================================
+   2026-06-14 21:15 - WORKSPACE PAGE
+   Purpose: Controls SOC Workspace form, module selector, textarea, and result output.
+============================================================================= */
+
+.workspace-page,
+.cases-page,
+.admin-page {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.workspace-grid {
+  height: calc(100vh - 285px) !important;
+  min-height: 520px;
+  max-height: calc(100vh - 285px);
+}
+
+.workspace-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.enterprise-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text-main);
+  font-weight: 850;
+}
+
+.enterprise-label select,
+.enterprise-label textarea {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.78);
+  color: var(--text-main);
+  padding: 13px 14px;
+  outline: none;
+}
+
+.enterprise-label select:focus,
+.enterprise-label textarea:focus {
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
+.enterprise-label textarea {
+  min-height: 300px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.module-context-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 15px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.module-context-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 13px;
+  color: var(--blue);
+  background: rgba(37, 99, 235, 0.22);
+}
+
+.module-context-card b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.module-context-card p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.primary-action-btn {
+  min-height: 48px;
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-weight: 950;
+}
+
+.primary-action-btn:hover {
+  filter: brightness(1.12);
+}
+
+.primary-action-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.output-panel {
+  min-height: 520px;
+}
+
+.result-box {
+  width: 100%;
+  min-height: 420px;
+  max-height: 660px;
+  overflow: auto;
+  margin: 0;
+  padding: 16px;
+  border-radius: 15px;
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: #dbeafe;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.55;
+}
+
+.empty-output {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px dashed rgba(148, 163, 184, 0.22);
+  color: var(--text-muted);
+  padding: 24px;
+}
+
+/* =============================================================================
+   2026-06-14 21:15 - CASES PAGE
+   Purpose: Controls saved case table layout and prevents full-page horizontal scroll.
+============================================================================= */
+
+.cases-table-panel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.cases-table {
+  min-width: 900px;
+}
+
+.cases-table th:first-child,
+.cases-table td:first-child {
+  width: 90px;
+}
+
+/* =============================================================================
+   2026-06-14 21:15 - ADMIN PAGE
+   Purpose: Controls admin access, integration, and health status panels.
+============================================================================= */
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.admin-health-panel {
+  margin-top: 0;
+}
+
+.admin-health-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.health-tile {
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.health-tile span {
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.health-tile b {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+@media (max-width: 1180px) {
+  .workspace-grid,
+  .admin-grid,
+  .admin-health-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .output-panel {
+    min-height: auto;
+  }
+}
+
+/* =============================================================================
+   2026-06-14 21:40 - STRUCTURED OUTPUT FORMATTER
+   Purpose: Render backend markdown output as professional SOC analyst report cards.
+============================================================================= */
+
+.analyst-report {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.analyst-report-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(37, 99, 235, 0.16);
+  border: 1px solid rgba(96, 165, 250, 0.24);
+}
+
+.analyst-report-title h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 950;
+}
+
+.analyst-report-title p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+}
+
+.analyst-section-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.analyst-section-card {
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(2, 6, 23, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.analyst-section-header {
+  padding: 13px 15px;
+  color: #dbeafe;
+  font-weight: 950;
+  background: rgba(15, 23, 42, 0.72);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.analyst-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.analyst-label-row {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.analyst-label-row span {
+  color: var(--text-muted);
+  font-weight: 850;
+}
+
+.analyst-label-row b {
+  color: var(--text-main);
+  font-weight: 900;
+  word-break: break-word;
+}
+
+.analyst-bullet-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.38);
+}
+
+.bullet-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: var(--blue);
+  flex: 0 0 auto;
+}
+
+.analyst-bullet-row p,
+.analyst-number-row p,
+.analyst-text-row {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.analyst-number-row {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.analyst-number-row span {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.24);
+  font-weight: 950;
+}
+
+.analyst-info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(120, 53, 15, 0.28);
+  border: 1px solid rgba(251, 191, 36, 0.26);
+  color: #fde68a;
+  font-weight: 850;
+}
+
+.analyst-text-row {
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.3);
+}
+@media (max-width: 720px) {
+  .analyst-label-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================================
+   2026-06-14 21:52 - SOC WORKSPACE VIEWPORT FIX
+   Purpose: Keep input/output panels visible, aligned, and internally scrollable.
+============================================================================= */
+
+.workspace-page {
+  height: auto !important;
+  min-height: auto !important;
+  overflow: visible !important;
+  margin-top: 18px;
+}
+
+.workspace-grid {
+  height: calc(100vh - 245px) !important;
+  min-height: 560px;
+  max-height: calc(100vh - 245px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 16px;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.workspace-form,
+.output-panel {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.workspace-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.enterprise-label textarea {
+  flex: 1;
+  min-height: 220px;
+  max-height: none !important;
+  overflow-y: auto;
+}
+
+.primary-action-btn {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.output-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.output-panel .panel-heading {
+  flex: 0 0 auto;
+  margin-bottom: 14px;
+}
+
+.empty-output {
+  flex: 1;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.analyst-report {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+@media (max-width: 1180px) {
+  .workspace-grid {
+    height: auto !important;
+    max-height: none;
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .workspace-form,
+  .output-panel {
+    height: auto;
+    overflow: visible;
+  }
+
+  .analyst-report {
+    max-height: 720px;
+  }
+}
+
+/* =============================================================================
+   2026-06-14 21:58 - FINAL SOC WORKSPACE LAYOUT FIX
+   Purpose:
+   Keep Analyze button always visible.
+   Only textarea and output report should scroll internally.
+   Prevent full page or form from hiding controls.
+============================================================================= */
+
+.workspace-page {
+  margin-top: 18px;
+  width: 100%;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 16px;
+  height: calc(100vh - 265px) !important;
+  min-height: 600px;
+  max-height: calc(100vh - 265px);
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.workspace-form {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto auto auto 1fr auto auto;
+  gap: 14px;
+}
+
+.workspace-form .panel-heading,
+.workspace-form .module-context-card,
+.workspace-form .primary-action-btn,
+.workspace-form .dashboard-error {
+  flex: 0 0 auto;
+}
+
+.enterprise-label {
+  min-height: 0;
+}
+
+.enterprise-label textarea {
+  width: 100%;
+  min-height: 180px !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow-y: auto !important;
+  resize: none;
+}
+
+.primary-action-btn {
+  width: 100%;
+  height: 54px;
+  min-height: 54px;
+  flex: 0 0 auto;
+  margin-top: 0 !important;
+  position: relative;
+  z-index: 5;
+}
+
+.output-panel {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.output-panel .panel-heading {
+  flex: 0 0 auto;
+}
+
+.analyst-report {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.empty-output {
+  flex: 1 1 auto;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+@media (max-width: 1180px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    height: auto !important;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .workspace-form,
+  .output-panel {
+    height: auto;
+    overflow: visible;
+  }
+
+  .enterprise-label textarea {
+    height: 360px !important;
+    resize: vertical;
+  }
+
+  .analyst-report {
+    max-height: 720px;
+  }
+}
+
+/* =============================================================================
+Project: Enterprise AI SecOps Copilot
+File: frontend/src/styles/dashboard.css
+Date Updated: 2026-06-15 16:20
+Purpose:
+  Case dashboard enhancement styles.
+============================================================================= */
+
+.cases-filter-panel {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.case-search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(8, 18, 36, 0.86);
+  border: 1px solid rgba(80, 140, 255, 0.22);
+  border-radius: 16px;
+  padding: 12px 16px;
+}
+
+.case-search-box input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #eaf2ff;
+  font-size: 15px;
+}
+
+.cases-filter-panel select {
+  background: rgba(8, 18, 36, 0.86);
+  border: 1px solid rgba(80, 140, 255, 0.22);
+  color: #eaf2ff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+.case-click-row {
+  cursor: pointer;
+}
+
+.case-click-row:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.case-detail-row td {
+  padding: 0 16px 18px;
+}
+
+.case-detail-box {
+  background: rgba(5, 12, 25, 0.92);
+  border: 1px solid rgba(80, 140, 255, 0.18);
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.case-detail-box pre {
+  white-space: pre-wrap;
+  max-height: 280px;
+  overflow: auto;
+  margin-top: 10px;
+  background: rgba(3, 8, 18, 0.9);
+  border-radius: 14px;
+  padding: 14px;
+  color: #cfe0ff;
+}
+.cases-pagination-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a8bfdc;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: #eaf2ff;
+  border-radius: 12px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* =============================================================================
+End: Case dashboard enhancement styles
+============================================================================= */

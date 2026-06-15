@@ -1,7 +1,8 @@
 fastapi
 uvicorn
-streamlit
+# streamlit
 requests
 pydantic
 sqlalchemy
 python-dotenv
+bcrypt

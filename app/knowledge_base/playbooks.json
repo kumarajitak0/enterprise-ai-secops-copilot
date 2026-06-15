@@ -1,0 +1,233 @@
+{
+  "event_playbooks": {
+    "4625": {
+      "title": "Windows Failed Logon Investigation",
+      "category": "windows_authentication",
+      "severity": "Medium",
+      "mitre": "T1110 Brute Force"
+    },
+    "4624": {
+      "title": "Windows Successful Logon Review",
+      "category": "windows_authentication",
+      "severity": "Low",
+      "mitre": "T1078 Valid Accounts"
+    },
+    "4672": {
+      "title": "Privileged Logon Investigation",
+      "category": "windows_privilege",
+      "severity": "High",
+      "mitre": "T1078 Valid Accounts"
+    },
+    "4688": {
+      "title": "Windows Process Creation Investigation",
+      "category": "windows_process",
+      "severity": "Medium",
+      "mitre": "T1059 Command and Scripting Interpreter"
+    },
+    "4798": {
+      "title": "Account Discovery Investigation",
+      "category": "account_discovery",
+      "severity": "Medium",
+      "mitre": "T1087 Account Discovery"
+    },
+    "1102": {
+      "title": "Windows Security Log Cleared Investigation",
+      "category": "defense_evasion",
+      "severity": "High",
+      "mitre": "T1070.001 Clear Windows Event Logs"
+    },
+    "7045": {
+      "title": "New Windows Service Installed Investigation",
+      "category": "windows_service",
+      "severity": "High",
+      "mitre": "T1543.003 Windows Service"
+    },
+    "5857": {
+    "title": "Windows WMI Activity Investigation",
+    "category": "windows_wmi_activity",
+    "severity": "Low",
+    "mitre": "T1047 Windows Management Instrumentation"
+    }
+  },
+  "category_commands": {
+    "windows_authentication": {
+      "windows_commands": [
+        "Get-WinEvent -FilterHashtable @{LogName='Security'; Id=<EventID>} -MaxEvents 20",
+        "Get-LocalUser",
+        "net user <username>",
+        "whoami /groups",
+        "Get-EventLog -LogName Security -Newest 20"
+      ],
+      "splunk_queries": [
+        "index=main EventCode=<EventID> | stats count by Account_Name, src_ip, host",
+        "index=main (EventCode=4625 OR EventCode=4624) user=<username> earliest=-24h",
+        "index=main EventCode=4625 | timechart count"
+      ],
+      "network_commands": [
+        "netstat -ano",
+        "ping <source-ip>",
+        "tracert <source-ip>"
+      ],
+      "containment": [
+        "Validate source IP and workstation.",
+        "Check if successful logon followed failed attempts.",
+        "Review account lockout and MFA status.",
+        "Disable or reset account only if suspicious activity is confirmed."
+      ]
+    },
+
+  "windows_wmi_activity": {
+    "windows_commands": [
+    "Get-WinEvent -LogName 'Microsoft-Windows-WMI-Activity/Operational' -MaxEvents 20",
+    "Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-WMI-Activity/Operational'; Id=5857} -MaxEvents 20",
+    "Get-Process -Id <PID>",
+    "wmic process get ProcessId,ParentProcessId,CommandLine"
+  ],
+  "splunk_queries": [
+    "index=* EventCode=5857 sourcetype=\"WinEventLog:WMI\"",
+    "index=* source=\"WinEventLog:Microsoft-Windows-WMI-Activity/Operational\" | stats count by host, ComputerName",
+    "index=* (EventCode=5857 OR EventCode=5861 OR EventCode=4688) earliest=-24h"
+  ],
+  "network_commands": [
+    "netstat -ano",
+    "Get-NetTCPConnection"
+  ],
+  "containment": [
+    "Confirm whether WMI activity is expected administration.",
+    "Correlate WMI activity with process creation logs.",
+    "Review source host and user context.",
+    "Escalate if WMI activity is remote, repeated, or linked to suspicious process execution."
+  ]
+  },
+
+    "account_discovery": {
+      "windows_commands": [
+        "Get-LocalGroupMember Administrators",
+        "net localgroup administrators",
+        "tasklist /FI \"PID eq <PID>\"",
+        "Get-Process -Id <PID>"
+      ],
+      "splunk_queries": [
+        "index=main EventCode=4798 | stats count by Account_Name, ComputerName",
+        "index=main (EventCode=4798 OR EventCode=4799 OR EventCode=4688) earliest=-24h"
+      ],
+      "network_commands": [
+        "netstat -ano"
+      ],
+      "containment": [
+        "Validate whether enumeration was expected.",
+        "Check parent process and user context.",
+        "Correlate with successful logons and privilege events."
+      ]
+    },
+    "windows_process": {
+      "windows_commands": [
+        "Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4688} -MaxEvents 20",
+        "Get-Process",
+        "tasklist /v",
+        "wmic process get ProcessId,ParentProcessId,CommandLine"
+      ],
+      "splunk_queries": [
+        "index=main EventCode=4688 | stats count by New_Process_Name, Creator_Process_Name, Account_Name",
+        "index=main EventCode=4688 (powershell OR cmd OR wscript OR cscript OR encodedcommand)"
+      ],
+      "network_commands": [
+        "netstat -ano",
+        "Get-NetTCPConnection"
+      ],
+      "containment": [
+        "Review command line arguments.",
+        "Check parent-child process chain.",
+        "Isolate host if malicious execution is confirmed."
+      ]
+    },
+    "defense_evasion": {
+      "windows_commands": [
+        "Get-WinEvent -FilterHashtable @{LogName='Security'; Id=1102} -MaxEvents 20",
+        "wevtutil qe Security /c:20 /f:text",
+        "auditpol /get /category:*"
+      ],
+      "splunk_queries": [
+        "index=main EventCode=1102 | table _time host Account_Name",
+        "index=main (EventCode=1102 OR EventCode=104) earliest=-24h"
+      ],
+      "network_commands": [
+        "netstat -ano"
+      ],
+      "containment": [
+        "Escalate immediately.",
+        "Preserve endpoint evidence.",
+        "Identify account that cleared logs.",
+        "Review previous privileged logons."
+      ]
+    },
+    "linux_authentication": {
+      "linux_commands": [
+        "last",
+        "lastb",
+        "journalctl -u ssh --since '24 hours ago'",
+        "grep 'Failed password' /var/log/auth.log",
+        "grep 'Accepted password' /var/log/auth.log"
+      ],
+      "splunk_queries": [
+        "index=linux sourcetype=auth failed password | stats count by src_ip user",
+        "index=linux (failed OR accepted) ssh earliest=-24h"
+      ],
+      "network_commands": [
+        "ss -antp",
+        "who",
+        "w",
+        "ping <source-ip>"
+      ],
+      "containment": [
+        "Review SSH source IP.",
+        "Check if login later succeeded.",
+        "Disable password login if not required.",
+        "Block source IP if confirmed malicious."
+      ]
+    },
+    "application_or_monitoring": {
+      "linux_commands": [
+        "systemctl status <service-name>",
+        "journalctl -u <service-name> --since '30 minutes ago'",
+        "top",
+        "df -h",
+        "free -m"
+      ],
+      "splunk_queries": [
+        "index=* (timeout OR error OR failed OR unavailable) earliest=-30m",
+        "index=* host=<host> earliest=-30m | stats count by sourcetype"
+      ],
+      "network_commands": [
+        "ss -antp | grep <port>",
+        "curl -v http://<host>:<port>/health",
+        "ping <target-host>"
+      ],
+      "containment": [
+        "Validate service health.",
+        "Check recent deployment or config change.",
+        "Review CPU, memory, disk, and connection count.",
+        "Escalate to application/SRE team if impact continues."
+      ]
+    }
+  },
+  "severity_overrides": {
+    "High": [
+      "Escalate to SOC Tier 2 or Incident Response.",
+      "Preserve logs and evidence.",
+      "Check for lateral movement or privilege escalation."
+    ],
+    "Medium": [
+      "Validate against baseline.",
+      "Correlate with related events.",
+      "Monitor for recurrence."
+    ],
+    "Low": [
+      "Document finding.",
+      "Validate expected activity.",
+      "Close as benign only after evidence review."
+    ]
+  }
+
+ 
+}
